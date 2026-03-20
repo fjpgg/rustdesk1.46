@@ -1422,12 +1422,17 @@ jobs:
           arch: ${{ matrix.job.arch }}
           distro: ${{ matrix.job.distro }}
           githubToken: ${{ github.token }}
+        env: |
+            RENDEZVOUS_SERVER=${{ secrets.RENDEZVOUS_SERVER }}
+            RS_PUB_KEY=${{ secrets.RS_PUB_KEY }}      
           setup: |
             ls -l "${PWD}"
             ls -l /opt/artifacts/vcpkg/installed
           dockerRunArgs: |
             --volume "${PWD}:/workspace"
             --volume "/opt/artifacts:/opt/artifacts"
+            -e RENDEZVOUS_SERVER=${{ secrets.RENDEZVOUS_SERVER }}
+            -e RS_PUB_KEY=${{ secrets.RS_PUB_KEY }}
           shell: /bin/bash
           install: |
             apt-get update -y
@@ -1471,6 +1476,8 @@ jobs:
             ls -l ./
             tree -L 3 /opt/artifacts/vcpkg/installed
           run: |
+            export RENDEZVOUS_SERVER=${{ secrets.RENDEZVOUS_SERVER }}
+            export RS_PUB_KEY=${{ secrets.RS_PUB_KEY }}
             # disable git safe.directory
             git config --global --add safe.directory "*"
             # rust
