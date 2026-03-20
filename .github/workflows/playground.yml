@@ -28,12 +28,8 @@ env:
   API_SERVER: "${{ secrets.API_SERVER }}"
   UPLOAD_ARTIFACT: "${{ inputs.upload-artifact }}"
   SIGN_BASE_URL: "${{ secrets.SIGN_BASE_URL }}"
-      # 添加你的自定义环境变量
-  RENDEZVOUS_SERVER: ${{ secrets.RENDEZVOUS_SERVER }}
-  RS_PUB_KEY: ${{ secrets.RS_PUB_KEY }}
-  API_SERVER: ${{ secrets.API_SERVER }}
-  PUBLIC_SERVERS: ${{ secrets.PUBLIC_SERVERS }}
-
+  PUBLIC_SERVERS: "${{ secrets.PUBLIC_SERVERS }}"
+  
 jobs:
   build-for-macOS:
     name: ${{ matrix.job.target }}
