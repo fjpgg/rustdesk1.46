@@ -10,7 +10,12 @@ env:
   FLUTTER_VERSION: "3.22.3"
   FLUTTER_RUST_BRIDGE_VERSION: "1.80.1"
   RUST_VERSION: "1.75" # https://github.com/rustdesk/rustdesk/discussions/7503
-
+    # 添加你的自定义环境变量
+  RENDEZVOUS_SERVER: ${{ secrets.RENDEZVOUS_SERVER }}
+  RS_PUB_KEY: ${{ secrets.RS_PUB_KEY }}
+  API_SERVER: ${{ secrets.API_SERVER }}
+  PUBLIC_SERVERS: ${{ secrets.PUBLIC_SERVERS }}
+  
 jobs:
   generate_bridge:
     runs-on: ${{ matrix.job.os }}
