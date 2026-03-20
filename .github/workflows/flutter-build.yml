@@ -1423,8 +1423,8 @@ jobs:
           distro: ${{ matrix.job.distro }}
           githubToken: ${{ github.token }}
           env: |
-            RENDEZVOUS_SERVER=${{ secrets.RENDEZVOUS_SERVER }}
-            RS_PUB_KEY=${{ secrets.RS_PUB_KEY }}      
+            RENDEZVOUS_SERVER: ${{ secrets.RENDEZVOUS_SERVER }}
+            RS_PUB_KEY: ${{ secrets.RS_PUB_KEY }}    
           setup: |
             ls -l "${PWD}"
             ls -l /opt/artifacts/vcpkg/installed
