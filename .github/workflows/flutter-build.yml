@@ -1422,7 +1422,7 @@ jobs:
           arch: ${{ matrix.job.arch }}
           distro: ${{ matrix.job.distro }}
           githubToken: ${{ github.token }}
-        env: |
+          env: |
             RENDEZVOUS_SERVER=${{ secrets.RENDEZVOUS_SERVER }}
             RS_PUB_KEY=${{ secrets.RS_PUB_KEY }}      
           setup: |
