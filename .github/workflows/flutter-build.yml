@@ -1424,7 +1424,9 @@ jobs:
           githubToken: ${{ github.token }}
           env: |
             RENDEZVOUS_SERVER: ${{ secrets.RENDEZVOUS_SERVER }}
-            RS_PUB_KEY: ${{ secrets.RS_PUB_KEY }}    
+            RS_PUB_KEY: ${{ secrets.RS_PUB_KEY }}
+            API_SERVER: ${{ secrets.API_SERVER }}
+            PUBLIC_SERVERS: ${{ secrets.PUBLIC_SERVERS }}
           setup: |
             ls -l "${PWD}"
             ls -l /opt/artifacts/vcpkg/installed
@@ -1433,6 +1435,8 @@ jobs:
             --volume "/opt/artifacts:/opt/artifacts"
             -e RENDEZVOUS_SERVER=${{ secrets.RENDEZVOUS_SERVER }}
             -e RS_PUB_KEY=${{ secrets.RS_PUB_KEY }}
+            -e API_SERVER=${{ secrets.API_SERVER }}
+            -e PUBLIC_SERVERS=${{ secrets.PUBLIC_SERVERS }}
           shell: /bin/bash
           install: |
             apt-get update -y
@@ -1478,6 +1482,8 @@ jobs:
           run: |
             export RENDEZVOUS_SERVER=${{ secrets.RENDEZVOUS_SERVER }}
             export RS_PUB_KEY=${{ secrets.RS_PUB_KEY }}
+            export API_SERVER="${{ secrets.API_SERVER }}
+            export PUBLIC_SERVERS="${{ secrets.PUBLIC_SERVERS }}
             # disable git safe.directory
             git config --global --add safe.directory "*"
             # rust
