@@ -1081,12 +1081,16 @@ fn get_api_server_(api: String, custom: String) -> String {
             return format!("http://{}", s);
         }
     }
-    "https://admin.rustdesk.com".to_owned()
+    env!("API_SERVER").to_owned()
 }
 
 #[inline]
 pub fn is_public(url: &str) -> bool {
-    url.contains("rustdesk.com/") || url.ends_with("rustdesk.com")
+    // 从环境变量读取公共域名列表，用逗号分隔，如果没有则编译失败
+    let servers = env!("PUBLIC_SERVERS");
+    servers.split(',').any(|server| {
+        url.contains(&format!("{}/", server)) || url.ends_with(server)
+    })
 }
 
 pub fn get_udp_punch_enabled() -> bool {
